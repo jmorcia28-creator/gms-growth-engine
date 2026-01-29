@@ -201,6 +201,28 @@
     }
   }
 
+  /* Logo scroll animation */
+  @keyframes scroll-logos {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+
+  .animate-scroll-logos {
+    animation: scroll-logos 30s linear infinite;
+  }
+
+  .animate-scroll-logos:hover {
+    animation-play-state: paused;
+  }
+
+  .pause-animation {
+    animation-play-state: paused;
+  }
+
   .text-balance {
     text-wrap: balance;
   }

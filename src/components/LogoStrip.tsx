@@ -1,30 +1,65 @@
 const LogoStrip = () => {
   const companies = [
-    'Evercore',
-    'Goldman Sachs',
-    'Morgan Stanley',
-    'MetLife',
-    'Bank of America Merrill Lynch',
-    'Credit Suisse',
-    'Clinton Group',
-    'Papyrus Capital',
+    { name: 'Evercore', logo: '/logos/Evercore.png' },
+    { name: 'Goldman Sachs', logo: '/logos/Goldman Sachs.png' },
+    { name: 'Morgan Stanley', logo: '/logos/Morgan Stanley.png' },
+    { name: 'MetLife', logo: '/logos/MetLife.png' },
+    { name: 'Bank of America Merrill Lynch', logo: '/logos/Bank of America Merrill Lynch.png' },
+    { name: 'Credit Suisse', logo: '/logos/Credit Suisse.png' },
+    { name: 'Clinton Group', logo: '/logos/Clinton Group.png' },
+    { name: 'Papyrus Capital', logo: '/logos/Papyrus Capital.png' },
   ];
 
+  // Duplicate for seamless loop
+  const duplicatedCompanies = [...companies, ...companies];
+
   return (
-    <section className="py-16 md:py-20 bg-muted/50">
+    <section className="py-16 md:py-20 bg-muted/50 overflow-hidden">
       <div className="container-wide">
         <p className="text-center text-muted-foreground text-sm font-medium mb-10 uppercase tracking-wider">
           Trusted by Experience Across Institutional Finance & Small Business
         </p>
+      </div>
+      
+      <div className="relative w-full">
+        {/* Gradient overlays for fade effect */}
+        <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-muted/50 to-transparent z-10 pointer-events-none" />
+        <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-muted/50 to-transparent z-10 pointer-events-none" />
         
-        <div className="flex flex-wrap justify-center items-center gap-x-10 gap-y-6 md:gap-x-16">
-          {companies.map((company) => (
-            <span
-              key={company}
-              className="logo-strip-item text-xs md:text-sm whitespace-nowrap opacity-60 hover:opacity-100 transition-opacity"
+        {/* Scrolling container */}
+        <div className="flex animate-scroll-logos hover:pause-animation">
+          {duplicatedCompanies.map((company, index) => (
+            <div
+              key={`${company.name}-${index}`}
+              className="flex-shrink-0 mx-8 md:mx-12 group cursor-pointer"
             >
-              {company}
-            </span>
+              <div className="relative flex items-center justify-center h-16 md:h-20 w-32 md:w-40 transition-all duration-300 ease-out group-hover:scale-110">
+                <img
+                  src={company.logo}
+                  alt={`${company.name} logo`}
+                  className="max-h-full max-w-full object-contain filter grayscale opacity-60 transition-all duration-300 group-hover:grayscale-0 group-hover:opacity-100"
+                  onError={(e) => {
+                    // Fallback to text if image fails to load
+                    const target = e.target as HTMLImageElement;
+                    target.style.display = 'none';
+                    const fallback = target.nextElementSibling as HTMLElement;
+                    if (fallback) fallback.style.display = 'block';
+                  }}
+                />
+                <span 
+                  className="hidden text-xs md:text-sm whitespace-nowrap text-muted-foreground font-medium uppercase tracking-wider transition-colors duration-300 group-hover:text-foreground"
+                >
+                  {company.name}
+                </span>
+              </div>
+              
+              {/* Hover tooltip */}
+              <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
+                <span className="text-xs text-muted-foreground whitespace-nowrap bg-background/90 px-2 py-1 rounded shadow-sm">
+                  {company.name}
+                </span>
+              </div>
+            </div>
           ))}
         </div>
       </div>
