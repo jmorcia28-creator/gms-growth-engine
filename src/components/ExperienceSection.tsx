@@ -2,12 +2,9 @@ import { Building, Lightbulb } from 'lucide-react';
 
 const ExperienceSection = () => {
   const institutions = [
-    'Evercore',
-    'Goldman Sachs',
-    'Morgan Stanley',
-    'Bank of America Merrill Lynch',
+    'Bank of America',
+    'Merrill Lynch',
     'Credit Suisse',
-    'MetLife',
     'Clinton Group (hedge fund)',
     'Papyrus Capital',
   ];

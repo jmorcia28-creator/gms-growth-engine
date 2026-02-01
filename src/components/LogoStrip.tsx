@@ -1,10 +1,7 @@
 const LogoStrip = () => {
   const companies = [
-    { name: 'Evercore', logo: '/logos/Evercore.png' },
-    { name: 'Goldman Sachs', logo: '/logos/Goldman Sachs.png' },
-    { name: 'Morgan Stanley', logo: '/logos/Morgan Stanley.png' },
-    { name: 'MetLife', logo: '/logos/MetLife.png' },
-    { name: 'Bank of America Merrill Lynch', logo: '/logos/Bank of America Merrill Lynch.png' },
+    { name: 'Bank of America', logo: '/logos/Bank of America.png' },
+    { name: 'Merrill Lynch', logo: '/logos/Merrill Lynch.png' },
     { name: 'Credit Suisse', logo: '/logos/Credit Suisse.png' },
     { name: 'Clinton Group', logo: '/logos/Clinton Group.png' },
     { name: 'Papyrus Capital', logo: '/logos/Papyrus Capital.png' },
