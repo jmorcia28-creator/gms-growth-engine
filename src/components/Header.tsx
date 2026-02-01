@@ -9,19 +9,25 @@ const Header = () => {
   const location = useLocation();
   const isHomePage = location.pathname === '/';
 
-  const navItems = [
-    { label: 'About', href: '#about', isAnchor: true },
-    { label: 'Services', href: '#services', isAnchor: true },
-    { label: 'Experience', href: '#experience', isAnchor: true },
-    { label: 'Why Us', href: '#why-us', isAnchor: true },
-    { label: 'Contact', href: '#contact', isAnchor: true },
-  ];
-
   const missionPages = [
+    { label: 'All Missions', href: '/missions' },
     { label: 'For Students', href: '/students' },
     { label: 'For Individuals', href: '/individuals' },
     { label: 'For Small Businesses', href: '/small-businesses' },
   ];
+
+  const scrollToSection = (sectionId: string) => {
+    if (!isHomePage) {
+      // Navigate to home first, then scroll
+      window.location.href = `/${sectionId}`;
+      return;
+    }
+    const element = document.querySelector(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+    setIsMenuOpen(false);
+  };
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border">
@@ -64,27 +70,39 @@ const Header = () => {
               )}
             </div>
 
-            {isHomePage && navItems.map((item) => (
-              <a
-                key={item.label}
-                href={item.href}
-                className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
-              >
-                {item.label}
-              </a>
-            ))}
+            <button
+              onClick={() => scrollToSection('#about')}
+              className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+            >
+              About
+            </button>
+            <button
+              onClick={() => scrollToSection('#services')}
+              className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+            >
+              Services
+            </button>
+            <button
+              onClick={() => scrollToSection('#experience')}
+              className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+            >
+              Experience
+            </button>
+            <button
+              onClick={() => scrollToSection('#why-us')}
+              className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+            >
+              Why Us
+            </button>
+            <button
+              onClick={() => scrollToSection('#contact')}
+              className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+            >
+              Contact
+            </button>
             
-            {!isHomePage && (
-              <Link
-                to="/#contact"
-                className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
-              >
-                Contact
-              </Link>
-            )}
-            
-            <Button variant="gold" size="sm" asChild>
-              <Link to="/#contact">Work With Us</Link>
+            <Button variant="gold" size="sm" onClick={() => scrollToSection('#contact')}>
+              Work With Us
             </Button>
           </nav>
 
@@ -117,19 +135,39 @@ const Header = () => {
                 ))}
               </div>
               
-              {isHomePage && navItems.map((item) => (
-                <a
-                  key={item.label}
-                  href={item.href}
-                  className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  {item.label}
-                </a>
-              ))}
+              <button
+                onClick={() => scrollToSection('#about')}
+                className="text-left text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+              >
+                About
+              </button>
+              <button
+                onClick={() => scrollToSection('#services')}
+                className="text-left text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+              >
+                Services
+              </button>
+              <button
+                onClick={() => scrollToSection('#experience')}
+                className="text-left text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+              >
+                Experience
+              </button>
+              <button
+                onClick={() => scrollToSection('#why-us')}
+                className="text-left text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+              >
+                Why Us
+              </button>
+              <button
+                onClick={() => scrollToSection('#contact')}
+                className="text-left text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+              >
+                Contact
+              </button>
               
-              <Button variant="gold" size="sm" className="w-fit" asChild>
-                <Link to="/#contact" onClick={() => setIsMenuOpen(false)}>Work With Us</Link>
+              <Button variant="gold" size="sm" className="w-fit" onClick={() => scrollToSection('#contact')}>
+                Work With Us
               </Button>
             </div>
           </nav>

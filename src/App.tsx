@@ -7,6 +7,7 @@ import Index from "./pages/Index";
 import Students from "./pages/Students";
 import Individuals from "./pages/Individuals";
 import SmallBusinesses from "./pages/SmallBusinesses";
+import Missions from "./pages/Missions";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -19,6 +20,7 @@ const App = () => (
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Index />} />
+          <Route path="/missions" element={<Missions />} />
           <Route path="/students" element={<Students />} />
           <Route path="/individuals" element={<Individuals />} />
           <Route path="/small-businesses" element={<SmallBusinesses />} />
